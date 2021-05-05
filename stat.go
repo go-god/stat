@@ -6,8 +6,9 @@
 package stat
 
 import (
-	"github.com/daheige/stat/prom"
 	"time"
+
+	"github.com/daheige/stat/prom"
 )
 
 // Stat interface.
@@ -42,20 +43,20 @@ var (
 )
 
 // PromBeginTime prometheus start time.
-func PromBeginTime() time.Time{
+func PromBeginTime() time.Time {
 	return time.Now()
 }
 
-// PromTimeSub return end time - start time interval.
+// PromTimeSub return end time - start time interval
 func PromTimeSub(promTime time.Time) int64 {
-	t := time.Now().Sub(promTime).Microseconds() // time interval us
+	t := time.Since(promTime).Microseconds() // time interval us
 	return t
 }
 
 // DBQueryEndTime db query end time - start time.
-func DBQueryEndTime(promTime time.Time,method string,name string){
+func DBQueryEndTime(promTime time.Time, method string, name string) {
 	t := PromTimeSub(promTime)
 
-	DBQuery.Timing(method,t,name)
-	DBQuery.State(method,t,name)
+	DBQuery.Timing(method, t, name)
+	DBQuery.State(method, t, name)
 }
