@@ -8,17 +8,17 @@ package stat
 import (
 	"time"
 
-	"github.com/daheige/stat/prom"
+	"github.com/go-god/stat/prom"
 )
 
-// Stat interface.
+// Stat interface
 type Stat interface {
 	Timing(name string, time int64, extra ...string)
 	Incr(name string, extra ...string) // name,ext...,code
 	State(name string, val int64, extra ...string)
 }
 
-// default stat struct,you can add other stat.
+// default stat struct,you can add other stat
 var (
 	// http client and server
 	HTTPClient Stat = prom.HTTPClient

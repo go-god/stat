@@ -1,4 +1,4 @@
-module github.com/daheige/stat
+module github.com/go-god/stat
 
 go 1.13
 
